@@ -1,0 +1,30 @@
+#pragma kernel ParticleMain
+
+#define NUM_THREAD_X 8*8*8
+#define NUM_THREAD_Y 1
+#define NUM_THREAD_Z 1
+
+#include "UnityCG.cginc"
+
+struct Particle {
+    float3 velocity;
+    float3 position;
+    float scale;
+    float lifetime;
+};
+
+RWStructuredBuffer<Particle> particleDataBuffer;
+
+float deltaTime;
+
+[numthreads(NUM_THREAD_X, 1, 1)]
+void ParticleMain(uint3 id : SV_DispatchThreadID)
+{
+    int index = id.x;
+    Particle p = particleDataBuffer[index];
+
+    p.position += p.velocity * deltaTime;
+    p.lifetime -= deltaTime;
+
+    particleDataBuffer[index] = p;
+}
