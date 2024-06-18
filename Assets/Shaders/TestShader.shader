@@ -39,6 +39,7 @@ Shader "Custom/TestShader"
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
+
                 float3 positionOS = IN.positionOS.xyz + _Positions[IN.instancedId].position;
                 //float3 positionOS = IN.positionOS.xyz;
                 //float3 positionOS = _Positions[IN.instancedId].position;

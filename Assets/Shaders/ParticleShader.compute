@@ -17,14 +17,34 @@ RWStructuredBuffer<Particle> particleDataBuffer;
 
 float deltaTime;
 
+int initNum;
+Particle initInfo;
+
 [numthreads(NUM_THREAD_X, 1, 1)]
 void ParticleMain(uint3 id : SV_DispatchThreadID)
 {
     int index = id.x;
     Particle p = particleDataBuffer[index];
 
-    p.position += p.velocity * deltaTime;
-    p.lifetime -= deltaTime;
+    if (p.lifetime > 0) {
+        p.position += p.velocity * deltaTime;
+        p.lifetime -= deltaTime;
 
-    particleDataBuffer[index] = p;
+        particleDataBuffer[index] = p;
+    }
+}
+
+[numthreads(NUM_THREAD_X, 1, 1)]
+void InitSomeParticle(uint3 id : SV_DispatchThreadID)
+{
+    int index = id.x;
+    Particle p = particleDataBuffer[index];
+
+    if (p.lifetime <= 0) {
+
+        p.velocity = initInfo.velocity;
+        p.position = initInfo.position;
+        p.scale = initInfo.scale;
+        p.lifetime = initInfo.lifetime;
+    }
 }

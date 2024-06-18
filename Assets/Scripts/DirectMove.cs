@@ -107,11 +107,11 @@ public class DirectMove : MonoBehaviour
 
         // (4) 実行結果を取得して確認します。
         //Particle[] resultParticles = new Particle[particleMax];
-        particleComputeBuffer.GetData(resultParticles);
+        //particleComputeBuffer.GetData(resultParticles);
 
-        graphicsBuffer.SetData(resultParticles);
+        //graphicsBuffer.SetData(resultParticles);
         // マテリアルにバッファを設定
-        material.SetBuffer("_Positions", graphicsBuffer);
+        material.SetBuffer("_Positions", particleComputeBuffer);
         Graphics.DrawMeshInstancedProcedural(mesh, 0, material, mesh.bounds, graphicsBuffer.count);
     }
 }

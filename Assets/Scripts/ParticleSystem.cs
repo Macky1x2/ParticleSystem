@@ -28,74 +28,55 @@ namespace Library
 
         private ParticleBuffer[] allParticles;
 
+        private Particle[] resultParticles;
+        public List<int> resetIDs { get; private set; } = new List<int>();
+
         private int forID = 0;
 
         private int kernelIndexParticleMain;
         private ComputeBuffer particleComputeBuffer;
+        private GraphicsBuffer graphicsBuffer;
+
+        private void OnDisable()
+        {
+            graphicsBuffer.Dispose();
+            particleComputeBuffer.Dispose();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
             allParticles = new ParticleBuffer[particleMax];
 
-            // (1) カーネルのインデックスを保存します。
+            computeShader = Instantiate(computeShader);
+            material = Instantiate(material);
+
+            // GraphicsBuffer‚ð¶¬‚µ‚ÄÀ•Wî•ñ‚ðÝ’è‚·‚é
+            graphicsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, particleMax,
+                Marshal.SizeOf<Particle>());
+
+            // (1) ƒJ[ƒlƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ð•Û‘¶‚µ‚Ü‚·B
             kernelIndexParticleMain = computeShader.FindKernel("ParticleMain");
 
-            // (2) ComputeShader で計算した結果を保存するためのバッファ (ComputeBuffer) を設定します。
-            // ComputeShader 内に、同じ型で同じ名前のバッファが定義されている必要があります。
+            // (2) ComputeShader ‚ÅŒvŽZ‚µ‚½Œ‹‰Ê‚ð•Û‘¶‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@ (ComputeBuffer) ‚ðÝ’è‚µ‚Ü‚·B
+            // ComputeShader “à‚ÉA“¯‚¶Œ^‚Å“¯‚¶–¼‘O‚Ìƒoƒbƒtƒ@‚ª’è‹`‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
 
-            // ComputeBuffer は どの程度の領域を確保するかを指定して初期化する必要があります。
+            // ComputeBuffer ‚Í ‚Ç‚Ì’ö“x‚Ì—Ìˆæ‚ðŠm•Û‚·‚é‚©‚ðŽw’è‚µ‚Ä‰Šú‰»‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
             particleComputeBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(Particle)));
             computeShader.SetBuffer
                 (kernelIndexParticleMain, "particleDataBuffer", particleComputeBuffer);
 
-            // (3) 必要なら ComputeShader にパラメータを渡します。
+            // (3) •K—v‚È‚ç ComputeShader ‚Éƒpƒ‰ƒ[ƒ^‚ð“n‚µ‚Ü‚·B
             Particle[] firstParticles = new Particle[particleMax];
             for (int i = 0; i < particleMax; i++)
             {
                 Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
                 firstParticles[i].position = transform.position;
                 firstParticles[i].scale = transform.localScale.x;
-                firstParticles[i].lifetime = lifetime;
+                firstParticles[i].lifetime = 0;
                 firstParticles[i].velocity = velocity;
             }
             particleComputeBuffer.SetData(firstParticles);
-            //this.computeShader.SetInt("intValue", 1);
-
-            //// (3) ComputeShader を Dispatch メソッドで実行します。
-            //// 指定したインデックスのカーネルを指定したグループ数で実行します。
-            //// グループ数は X * Y * Z で指定します。この例では 1 * 1 * 1 = 1 グループです。
-
-            //this.computeShader.Dispatch(this.kernelIndex_KernelFunction_A, 1, 1, 1);
-
-            //// (4) 実行結果を取得して確認します。
-
-            //int[] result = new int[4];
-
-            //this.particleComputeBuffer.GetData(result);
-
-            //Debug.Log("RESULT : KernelFunction_A");
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Debug.Log(result[i]);
-            //}
-
-            //// (5) ComputerShader 内にある異なるカーネルを実行します。
-            //// ここではカーネル「KernelFunction_A」で使ったバッファを使いまわします。
-
-            //this.computeShader.SetBuffer
-            //    (this.kernelIndex_KernelFunction_B, "intBuffer", this.intComputeBuffer);
-            //this.computeShader.Dispatch(this.kernelIndex_KernelFunction_B, 1, 1, 1);
-
-            //this.intComputeBuffer.GetData(result);
-
-            //Debug.Log("RESULT : KernelFunction_B");
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Debug.Log(result[i]);
-            //}
 
             if (is2D)
             {
@@ -127,30 +108,52 @@ namespace Library
                 OnDestroyPoolObject);
 
              emitter = new Emitter(spawnSpeed, particleMax, particlePool);
+
+            resultParticles = new Particle[particleMax];
         }
 
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(particlePool.CountActive);
-
             emitter.Update();
-
-            List<Matrix4x4> tmpMatrix = new List<Matrix4x4>();
-            for(int i = 0; i < allParticles.Length; i++)
+            for(int i = 0; i < particleMax; i++)
             {
-                if (allParticles[i] != null && allParticles[i].isActive)
+                if (allParticles[i] != null && allParticles[i].isActive == true)
                 {
                     allParticles[i].Update();
-                    tmpMatrix.Add(Matrix4x4.TRS(allParticles[i].position, allParticles[i].rotation, allParticles[i].scale));
-                    if (tmpMatrix.Count == 1023)
-                    {
-                        Graphics.DrawMeshInstanced(mesh, 0, material, tmpMatrix);
-                        tmpMatrix.Clear();
-                    }
                 }
             }
-            Graphics.DrawMeshInstanced(mesh, 0, material, tmpMatrix);
+
+            computeShader.SetFloat("deltaTime", Time.deltaTime);
+
+            // (3) ComputeShader ‚ð Dispatch ƒƒ\ƒbƒh‚ÅŽÀs‚µ‚Ü‚·B
+            // Žw’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌƒJ[ƒlƒ‹‚ðŽw’è‚µ‚½ƒOƒ‹[ƒv”‚ÅŽÀs‚µ‚Ü‚·B
+            computeShader.Dispatch(kernelIndexParticleMain, particleMax / (8 * 8 * 8), 1, 1);
+
+            // (4) ŽÀsŒ‹‰Ê‚ðŽæ“¾‚µ‚ÄŠm”F‚µ‚Ü‚·B
+            //Particle[] resultParticles = new Particle[particleMax];
+            particleComputeBuffer.GetData(resultParticles);
+
+            graphicsBuffer.SetData(resultParticles);
+            // ƒ}ƒeƒŠƒAƒ‹‚Éƒoƒbƒtƒ@‚ðÝ’è
+            material.SetBuffer("_Positions", graphicsBuffer);
+            Graphics.DrawMeshInstancedProcedural(mesh, 0, material, mesh.bounds, graphicsBuffer.count);
+        }
+
+        private void LateUpdate()
+        {
+            for (int i = 0; i < resetIDs.Count; i++)
+            {
+                //Debug.Log(resetIDs[i]);
+                Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
+                resultParticles[resetIDs[i]].position = transform.position;
+                resultParticles[resetIDs[i]].scale = transform.localScale.x;
+                resultParticles[resetIDs[i]].lifetime = lifetime;
+                resultParticles[resetIDs[i]].velocity = velocity;
+            }
+            particleComputeBuffer.SetData(resultParticles);
+
+            resetIDs.Clear();
         }
 
         // ObjectPool コンストラクタ 1つ目の引数の関数 
@@ -158,6 +161,8 @@ namespace Library
         // objectPool.Get()のときに呼ばれる
         private ParticleBuffer OnCreatePoolObject()
         {
+            resetIDs.Add(forID);
+
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
             ParticleBuffer p = new ParticleBuffer(transform.position, transform.rotation, transform.localScale, lifetime + randomLifetime * Random.value, velocity, particlePool, forID++);
             p.isActive = true;
@@ -170,6 +175,8 @@ namespace Library
         // objectPool.Get()のときに呼ばれる
         private void OnTakeFromPool(ParticleBuffer target)
         {
+            resetIDs.Add(target.id);
+
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
             target.Init(transform.position, transform.rotation, transform.localScale, lifetime + randomLifetime * Random.value, velocity);
             target.isActive = true;
@@ -225,7 +232,8 @@ namespace Library
             spawnTimer += Time.deltaTime;
             while (spawnTimer >= oneTime)
             {
-                if (particlePool.CountAll < particleMax)
+                Debug.Log(particlePool.CountActive);
+                if (particlePool.CountActive < particleMax)
                 {
                     particlePool.Get();
                     spawnTimer -= oneTime;
@@ -279,18 +287,11 @@ namespace Library
         public void Update()
         {
             lifetime -= Time.deltaTime;
+
             if (lifetime <= 0)
             {
                 particlePool.Release(this);
-                return;
             }
-
-            Move();
-        }
-
-        private void Move()
-        {
-            position += velocity * Time.deltaTime;
         }
     }
 }
