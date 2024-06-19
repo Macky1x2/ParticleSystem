@@ -14,6 +14,8 @@ public class DirectMove : MonoBehaviour
     [SerializeField] private Vector3 startVelocity;
     [SerializeField] private float randomStartSpeed;
     [SerializeField] private float lifetime;
+    [SerializeField] private float scale;
+    [SerializeField] private float randomScale;
 
     [SerializeField] private bool is2D;
 
@@ -82,10 +84,10 @@ public class DirectMove : MonoBehaviour
         {
             mesh = new Mesh();
             mesh.vertices = new Vector3[] {
-                    new Vector3 (-0.5f, -0.5f),
-                    new Vector3 (0.5f, -0.5f),
-                    new Vector3 (0.5f, 0.5f),
-                    new Vector3 (-0.5f, 0.5f),
+                    new Vector3 (-0.01f, -0.01f),
+                    new Vector3 (0.01f, -0.01f),
+                    new Vector3 (0.01f, 0.01f),
+                    new Vector3 (-0.01f, 0.01f),
                 };
             mesh.uv = new Vector2[]{
                     new Vector2(0,0),
@@ -138,6 +140,7 @@ public class DirectMove : MonoBehaviour
         for (int i = 0; i < spawnNum; i++)
         {
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
+            float scaleThis = scale + randomScale * Random.value;
             spawnInfos[i].position = transform.position;
             spawnInfos[i].scale = transform.localScale.x;
             spawnInfos[i].lifetime = lifetime;
