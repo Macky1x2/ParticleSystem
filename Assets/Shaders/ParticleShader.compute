@@ -1,4 +1,5 @@
 #pragma kernel ParticleMain
+#pragma kernel SpawnParticle
 
 #define NUM_THREAD_X 8*8*8
 #define NUM_THREAD_Y 1
@@ -14,11 +15,12 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> particleDataBuffer;
+RWStructuredBuffer<Particle> spawnParticleDataBuffer;
+RWStructuredBuffer<int> spawnCountDataBuffer;
 
 float deltaTime;
 
-int initNum;
-Particle initInfo;
+int spawnNum;
 
 [numthreads(NUM_THREAD_X, 1, 1)]
 void ParticleMain(uint3 id : SV_DispatchThreadID)
@@ -34,17 +36,38 @@ void ParticleMain(uint3 id : SV_DispatchThreadID)
     }
 }
 
+//[numthreads(NUM_THREAD_X, 1, 1)]
+//void InitSomeParticle(uint3 id : SV_DispatchThreadID)
+//{
+//    int index = id.x;
+//    Particle p = particleDataBuffer[index];
+//
+//    if (p.lifetime <= 0) {
+//
+//        p.velocity = initInfo.velocity;
+//        p.position = initInfo.position;
+//        p.scale = initInfo.scale;
+//        p.lifetime = initInfo.lifetime;
+//    }
+//}
+
 [numthreads(NUM_THREAD_X, 1, 1)]
-void InitSomeParticle(uint3 id : SV_DispatchThreadID)
+void SpawnParticle(uint3 id : SV_DispatchThreadID)
 {
     int index = id.x;
     Particle p = particleDataBuffer[index];
 
     if (p.lifetime <= 0) {
+        int myCount;
+        InterlockedAdd(spawnCountDataBuffer[0], 1, myCount);
 
-        p.velocity = initInfo.velocity;
-        p.position = initInfo.position;
-        p.scale = initInfo.scale;
-        p.lifetime = initInfo.lifetime;
+        if (myCount <= spawnNum) {
+            p.velocity = spawnParticleDataBuffer[myCount - 1].velocity;
+            p.position = spawnParticleDataBuffer[myCount - 1].position;
+            p.scale = spawnParticleDataBuffer[myCount - 1].scale;
+            p.lifetime = spawnParticleDataBuffer[myCount - 1].lifetime;
+
+            particleDataBuffer[index] = p;
+        }
     }
 }

@@ -160,6 +160,7 @@ MonoBehaviour:
   randomStartSpeed: 6
   lifetime: 500
   is2D: 1
+  spawnSpeed: 0
 --- !u!4 &8819885
 Transform:
   m_ObjectHideFlags: 0
@@ -204,16 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537b8fa9387789d48bcf3058b9aba100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 321f61409d9f89c4f86f8af34d96c4d5, type: 2}
-  lifetime: 3
-  randomLifetime: 4
-  particleMax: 100000
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  spawnSpeed: 100000
-  is2D: 1
 --- !u!4 &467338371
 Transform:
   m_ObjectHideFlags: 0
@@ -634,12 +625,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1106192268
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +668,7 @@ MonoBehaviour:
   randomStartSpeed: 6
   lifetime: 500
   is2D: 1
+  spawnSpeed: 0
 --- !u!4 &1106192270
 Transform:
   m_ObjectHideFlags: 0
@@ -5557,8 +5549,9 @@ MonoBehaviour:
   particleMax: 100000
   startVelocity: {x: -3, y: -3, z: -3}
   randomStartSpeed: 6
-  lifetime: 500
+  lifetime: 5
   is2D: 1
+  spawnSpeed: 100000
 --- !u!4 &1552456052
 Transform:
   m_ObjectHideFlags: 0
