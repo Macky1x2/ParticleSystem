@@ -9,6 +9,7 @@
     {
         Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
+        Cull Front
         ZWrite Off
         LOD 100
 
@@ -56,22 +57,17 @@
             v2f vert(appdata v)
             {
                 v2f o;
-                //float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
                 o.vertex = mul(
                     UNITY_MATRIX_P,
                     mul(
                         UNITY_MATRIX_V,
-                        mul(
-                            unity_ObjectToWorld, float4(0, 0, 0, 1)
-                        )  + float4(_Positions[v.instancedId].position, 0)
+                        float4(_Positions[v.instancedId].position, 1)
                     ) + float4(v.vertex.xy, 0, 0)
                 ); // 常にカメラを向く
-                /*mul(
-                    UNITY_MATRIX_VP, mul(
-                        unity_ObjectToWorld, float4(positionOS, 1.0)
-                    )
-                );*/
-                //o.vertex = UnityObjectToClipPos(positionOS);
+                
+                /*float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
+                o.vertex = UnityObjectToClipPos(positionOS);*/
+                
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.instancedId = v.instancedId;
                 UNITY_TRANSFER_FOG(o,o.vertex);

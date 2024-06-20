@@ -157,8 +157,7 @@ public class DirectMove : MonoBehaviour
             float scaleThis = scale + randomScale * Random.value;
             Vector3 deltaPos = transform.position - prePosition;
             spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
-            //spawnInfos[i].position = transform.position;
-            spawnInfos[i].scale = transform.localScale.x;
+            spawnInfos[i].scale = scaleThis;
             spawnInfos[i].lifetime = lifetime;
             spawnInfos[i].velocity = velocity;
             spawnInfos[i].color = MakeHDRColor(Color.HSVToRGB(emissionColorDeltaSpeed * timeAfterStart - ((int)(emissionColorDeltaSpeed * timeAfterStart)), 1, 1), emissionIntensity);

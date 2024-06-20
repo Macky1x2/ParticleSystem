@@ -54,7 +54,6 @@
             {
                 v2f o;
                 float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
-                //o.vertex = mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_V, mul(unity_ObjectToWorld, float4(0, 0, 0, 1)) + float4(v.vertex.x, v.vertex.y, 0, 0)) + float4(_Positions[v.instancedId].position, 0)); // 常にカメラを向く
                 o.vertex = UnityObjectToClipPos(positionOS);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.instancedId = v.instancedId;
