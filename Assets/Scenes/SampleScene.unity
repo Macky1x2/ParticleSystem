@@ -5571,7 +5571,7 @@ MonoBehaviour:
   startVelocity: {x: -3, y: -3, z: -3}
   randomStartSpeed: 6
   lifetime: 5
-  scale: 0.01
+  scale: 1
   randomScale: 0
   emissionColorDeltaSpeed: 1
   emissionIntensity: 1

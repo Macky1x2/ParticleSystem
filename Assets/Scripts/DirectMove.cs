@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DirectMove : MonoBehaviour
 {
+    private static readonly float baseMeshSize = 0.01f;
+
     [SerializeField] private ComputeShader computeShader;
 
     [SerializeField] private Mesh mesh;
@@ -91,10 +93,10 @@ public class DirectMove : MonoBehaviour
         {
             mesh = new Mesh();
             mesh.vertices = new Vector3[] {
-                    new Vector3 (-scale, -scale),
-                    new Vector3 (scale, -scale),
-                    new Vector3 (scale, scale),
-                    new Vector3 (-scale, scale),
+                    new Vector3 (-baseMeshSize, -baseMeshSize),
+                    new Vector3 (baseMeshSize, -baseMeshSize),
+                    new Vector3 (baseMeshSize, baseMeshSize),
+                    new Vector3 (-baseMeshSize, baseMeshSize),
                 };
             mesh.uv = new Vector2[]{
                     new Vector2(0,0),
