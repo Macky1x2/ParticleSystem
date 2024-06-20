@@ -12,6 +12,7 @@ struct Particle {
     float3 position;
     float scale;
     float lifetime;
+    float4 color;
 };
 
 RWStructuredBuffer<Particle> particleDataBuffer;
@@ -60,12 +61,12 @@ void SpawnParticle(uint3 id : SV_DispatchThreadID)
     if (p.lifetime <= 0) {
         int myCount;
         InterlockedAdd(spawnCountDataBuffer[0], 1, myCount);
-
         if (myCount <= spawnNum) {
             p.velocity = spawnParticleDataBuffer[myCount - 1].velocity;
             p.position = spawnParticleDataBuffer[myCount - 1].position;
             p.scale = spawnParticleDataBuffer[myCount - 1].scale;
             p.lifetime = spawnParticleDataBuffer[myCount - 1].lifetime;
+            p.color = spawnParticleDataBuffer[myCount - 1].color;
 
             particleDataBuffer[index] = p;
         }

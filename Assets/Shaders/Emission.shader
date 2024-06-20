@@ -1,4 +1,4 @@
-Shader "Custom/Emission"
+﻿Shader "Custom/Emission"
 {
     Properties
     {
@@ -43,6 +43,7 @@ Shader "Custom/Emission"
                 float3 position;
                 float scale;
                 float lifetime;
+                float4 color;
             };
 
             StructuredBuffer<Particle> _Positions;
@@ -50,13 +51,27 @@ Shader "Custom/Emission"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
-            float4 _EmissionColor;             //�ǉ�
+            float4 _EmissionColor;             //’Ç‰Á
 
             v2f vert(appdata v)
             {
                 v2f o;
-                float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
-                o.vertex = UnityObjectToClipPos(positionOS);
+                //float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
+                o.vertex = mul(
+                    UNITY_MATRIX_P,
+                    mul(
+                        UNITY_MATRIX_V,
+                        mul(
+                            unity_ObjectToWorld, float4(0, 0, 0, 1)
+                        )  + float4(_Positions[v.instancedId].position, 0)
+                    ) + float4(v.vertex.xy, 0, 0)
+                ); // 常にカメラを向く
+                /*mul(
+                    UNITY_MATRIX_VP, mul(
+                        unity_ObjectToWorld, float4(positionOS, 1.0)
+                    )
+                );*/
+                //o.vertex = UnityObjectToClipPos(positionOS);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.instancedId = v.instancedId;
                 UNITY_TRANSFER_FOG(o,o.vertex);
@@ -67,7 +82,8 @@ Shader "Custom/Emission"
             {
                 clip(_Positions[i.instancedId].lifetime - 0.0001);
             // sample the texture
-            fixed4 col = tex2D(_MainTex, i.uv) * _EmissionColor;
+            //fixed4 col = tex2D(_MainTex, i.uv) * _EmissionColor;
+            fixed4 col = tex2D(_MainTex, i.uv) * _Positions[i.instancedId].color;
             // apply fog
             UNITY_APPLY_FOG(i.fogCoord, col);
             return col;

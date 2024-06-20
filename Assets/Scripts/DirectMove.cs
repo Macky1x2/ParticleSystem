@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -16,6 +16,8 @@ public class DirectMove : MonoBehaviour
     [SerializeField] private float lifetime;
     [SerializeField] private float scale;
     [SerializeField] private float randomScale;
+    [SerializeField] private float emissionColorDeltaSpeed;
+    [SerializeField] private float emissionIntensity;
 
     [SerializeField] private bool is2D;
 
@@ -25,16 +27,21 @@ public class DirectMove : MonoBehaviour
 
     private Particle[] spawnInfos;
 
+    private Vector3 prePosition;
+
+    private float timeAfterStart = 0;
+
     private int kernelIndexParticleMain;
     private int kernelIndexSpawnParticle;
     private ComputeBuffer particleComputeBuffer;
     private ComputeBuffer spawnParticlerComputeBuffer;
     private ComputeBuffer spawnCountComputeBuffer;
+
     private int[] spawnCountBuffer = new int[1];
 
     private void OnEnable()
     {
-        
+        prePosition = transform.position;
     }
 
     private void OnDisable()
@@ -50,14 +57,14 @@ public class DirectMove : MonoBehaviour
         computeShader = Instantiate(computeShader);
         material = Instantiate(material);
 
-        // (1) ƒJ[ƒlƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶‚µ‚Ü‚·B
+        // (1) Æ’JÂ[Æ’lÆ’â€¹â€šÃŒÆ’CÆ’â€œÆ’fÆ’bÆ’NÆ’Xâ€šÃ°â€¢Ã›â€˜Â¶â€šÂµâ€šÃœâ€šÂ·ÂB
         kernelIndexParticleMain = computeShader.FindKernel("ParticleMain");
         kernelIndexSpawnParticle = computeShader.FindKernel("SpawnParticle");
 
-        // (2) ComputeShader ‚ÅŒvZ‚µ‚½Œ‹‰Ê‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@ (ComputeBuffer) ‚ğİ’è‚µ‚Ü‚·B
-        // ComputeShader “à‚ÉA“¯‚¶Œ^‚Å“¯‚¶–¼‘O‚Ìƒoƒbƒtƒ@‚ª’è‹`‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+        // (2) ComputeShader â€šÃ…Å’vÅ½Zâ€šÂµâ€šÂ½Å’â€¹â€°ÃŠâ€šÃ°â€¢Ã›â€˜Â¶â€šÂ·â€šÃ©â€šÂ½â€šÃŸâ€šÃŒÆ’oÆ’bÆ’tÆ’@ (ComputeBuffer) â€šÃ°ÂÃâ€™Ã¨â€šÂµâ€šÃœâ€šÂ·ÂB
+        // ComputeShader â€œÃ â€šÃ‰ÂAâ€œÂ¯â€šÂ¶Å’^â€šÃ…â€œÂ¯â€šÂ¶â€“Â¼â€˜Oâ€šÃŒÆ’oÆ’bÆ’tÆ’@â€šÂªâ€™Ã¨â€¹`â€šÂ³â€šÃªâ€šÃ„â€šÂ¢â€šÃ©â€¢Kâ€”vâ€šÂªâ€šÂ â€šÃ¨â€šÃœâ€šÂ·ÂB
 
-        // ComputeBuffer ‚Í ‚Ç‚Ì’ö“x‚Ì—Ìˆæ‚ğŠm•Û‚·‚é‚©‚ğw’è‚µ‚Ä‰Šú‰»‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+        // ComputeBuffer â€šÃ â€šÃ‡â€šÃŒâ€™Ã¶â€œxâ€šÃŒâ€”ÃŒË†Ã¦â€šÃ°Å mâ€¢Ã›â€šÂ·â€šÃ©â€šÂ©â€šÃ°Å½wâ€™Ã¨â€šÂµâ€šÃ„Ââ€°Å Ãºâ€°Â»â€šÂ·â€šÃ©â€¢Kâ€”vâ€šÂªâ€šÂ â€šÃ¨â€šÃœâ€šÂ·ÂB
         particleComputeBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(Particle)));
         spawnParticlerComputeBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(Particle)));
         spawnCountComputeBuffer = new ComputeBuffer(1, Marshal.SizeOf(typeof(int)));
@@ -67,7 +74,7 @@ public class DirectMove : MonoBehaviour
         computeShader.SetBuffer(kernelIndexSpawnParticle, "spawnParticleDataBuffer", spawnParticlerComputeBuffer);
         computeShader.SetBuffer(kernelIndexSpawnParticle, "spawnCountDataBuffer", spawnCountComputeBuffer);
 
-        // (3) •K—v‚È‚ç ComputeShader ‚Éƒpƒ‰ƒ[ƒ^‚ğ“n‚µ‚Ü‚·B
+        // (3) â€¢Kâ€”vâ€šÃˆâ€šÃ§ ComputeShader â€šÃ‰Æ’pÆ’â€°Æ’ÂÂ[Æ’^â€šÃ°â€œnâ€šÂµâ€šÃœâ€šÂ·ÂB
         spawnInfos = new Particle[particleMax];
         Particle[] firstParticles = new Particle[particleMax];
         for (int i = 0; i < particleMax; i++)
@@ -84,10 +91,10 @@ public class DirectMove : MonoBehaviour
         {
             mesh = new Mesh();
             mesh.vertices = new Vector3[] {
-                    new Vector3 (-0.01f, -0.01f),
-                    new Vector3 (0.01f, -0.01f),
-                    new Vector3 (0.01f, 0.01f),
-                    new Vector3 (-0.01f, 0.01f),
+                    new Vector3 (-scale, -scale),
+                    new Vector3 (scale, -scale),
+                    new Vector3 (scale, scale),
+                    new Vector3 (-scale, scale),
                 };
             mesh.uv = new Vector2[]{
                     new Vector2(0,0),
@@ -118,18 +125,25 @@ public class DirectMove : MonoBehaviour
 
         computeShader.SetFloat("deltaTime", Time.deltaTime);
 
-        // (3) ComputeShader ‚ğ Dispatch ƒƒ\ƒbƒh‚ÅÀs‚µ‚Ü‚·B
-        // w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌƒJ[ƒlƒ‹‚ğw’è‚µ‚½ƒOƒ‹[ƒv”‚ÅÀs‚µ‚Ü‚·B
+        // (3) ComputeShader â€šÃ° Dispatch Æ’ÂÆ’\Æ’bÆ’hâ€šÃ…Å½Ã€Âsâ€šÂµâ€šÃœâ€šÂ·ÂB
+        // Å½wâ€™Ã¨â€šÂµâ€šÂ½Æ’CÆ’â€œÆ’fÆ’bÆ’NÆ’Xâ€šÃŒÆ’JÂ[Æ’lÆ’â€¹â€šÃ°Å½wâ€™Ã¨â€šÂµâ€šÂ½Æ’OÆ’â€¹Â[Æ’vÂâ€â€šÃ…Å½Ã€Âsâ€šÂµâ€šÃœâ€šÂ·ÂB
         computeShader.Dispatch(kernelIndexParticleMain, particleMax / (8 * 8 * 8), 1, 1);
 
-        // (4) ÀsŒ‹‰Ê‚ğæ“¾‚µ‚ÄŠm”F‚µ‚Ü‚·B
+        // (4) Å½Ã€ÂsÅ’â€¹â€°ÃŠâ€šÃ°Å½Ã¦â€œÂ¾â€šÂµâ€šÃ„Å mâ€Fâ€šÂµâ€šÃœâ€šÂ·ÂB
         //Particle[] resultParticles = new Particle[particleMax];
         //particleComputeBuffer.GetData(resultParticles);
 
         //graphicsBuffer.SetData(resultParticles);
-        // ƒ}ƒeƒŠƒAƒ‹‚Éƒoƒbƒtƒ@‚ğİ’è
+        // Æ’}Æ’eÆ’Å Æ’AÆ’â€¹â€šÃ‰Æ’oÆ’bÆ’tÆ’@â€šÃ°ÂÃâ€™Ã¨
         material.SetBuffer("_Positions", particleComputeBuffer);
         Graphics.DrawMeshInstancedProcedural(mesh, 0, material, mesh.bounds, particleComputeBuffer.count);
+    }
+
+    void LateUpdate()
+    {
+        prePosition = transform.position;
+
+        timeAfterStart += Time.deltaTime;
     }
 
     private void SetSpawnInfo(int spawnNum)
@@ -141,14 +155,28 @@ public class DirectMove : MonoBehaviour
         {
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
             float scaleThis = scale + randomScale * Random.value;
-            spawnInfos[i].position = transform.position;
+            Vector3 deltaPos = transform.position - prePosition;
+            spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
+            //spawnInfos[i].position = transform.position;
             spawnInfos[i].scale = transform.localScale.x;
             spawnInfos[i].lifetime = lifetime;
             spawnInfos[i].velocity = velocity;
+            spawnInfos[i].color = MakeHDRColor(Color.HSVToRGB(emissionColorDeltaSpeed * timeAfterStart - ((int)(emissionColorDeltaSpeed * timeAfterStart)), 1, 1), emissionIntensity);
         }
         var segment = spawnInfos[0..(spawnNum)];
         spawnParticlerComputeBuffer.SetData(segment);
         //spawnParticlerComputeBuffer.SetData(spawnInfos);
+    }
+
+    public static Color MakeHDRColor(Color ldrColor, float intensity)
+    {
+        var factor = Mathf.Pow(2, intensity);
+        return new Color(
+            ldrColor.r * factor,
+            ldrColor.g * factor,
+            ldrColor.b * factor,
+            ldrColor.a
+        );
     }
 }
 
@@ -158,6 +186,7 @@ public struct Particle
     public Vector3 position;
     public float scale;
     public float lifetime;
+    public Color color;
 };
 
 public class Emitter
