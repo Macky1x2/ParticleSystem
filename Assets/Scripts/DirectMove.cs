@@ -127,18 +127,19 @@ public class DirectMove : MonoBehaviour
 
         computeShader.SetFloat("deltaTime", Time.deltaTime);
 
-        // (3) ComputeShader ‚ð Dispatch ƒƒ\ƒbƒh‚ÅŽÀs‚µ‚Ü‚·B
         // Žw’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌƒJ[ƒlƒ‹‚ðŽw’è‚µ‚½ƒOƒ‹[ƒv”‚ÅŽÀs‚µ‚Ü‚·B
         computeShader.Dispatch(kernelIndexParticleMain, particleMax / (8 * 8 * 8), 1, 1);
 
-        // (4) ŽÀsŒ‹‰Ê‚ðŽæ“¾‚µ‚ÄŠm”F‚µ‚Ü‚·B
         //Particle[] resultParticles = new Particle[particleMax];
         //particleComputeBuffer.GetData(resultParticles);
 
+        //カメラの前に移動
+        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+
         //graphicsBuffer.SetData(resultParticles);
-        // ƒ}ƒeƒŠƒAƒ‹‚Éƒoƒbƒtƒ@‚ðÝ’è
         material.SetBuffer("_Positions", particleComputeBuffer);
-        Graphics.DrawMeshInstancedProcedural(mesh, 0, material, mesh.bounds, particleComputeBuffer.count);
+        Graphics.DrawMeshInstancedProcedural(mesh, 0, material, new Bounds(transform.position,
+    new Vector3(2f, 2f, 2f)), particleComputeBuffer.count);
     }
 
     void LateUpdate()
@@ -158,7 +159,8 @@ public class DirectMove : MonoBehaviour
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
             float scaleThis = scale + randomScale * Random.value;
             Vector3 deltaPos = transform.position - prePosition;
-            spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
+            //spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
+            spawnInfos[i].position = Vector3.zero;
             spawnInfos[i].scale = scaleThis;
             spawnInfos[i].lifetime = lifetime;
             spawnInfos[i].velocity = velocity;
