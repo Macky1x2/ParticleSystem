@@ -9,7 +9,7 @@
     {
         Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
-        Cull Front
+        //Cull Front
         ZWrite Off
         LOD 100
 
@@ -62,7 +62,7 @@
                     mul(
                         UNITY_MATRIX_V,
                         float4(_Positions[v.instancedId].position, 1)
-                    ) + float4(v.vertex.xy * _Positions[v.instancedId].scale, 0, 0)
+                    ) + float4(-v.vertex.x, v.vertex.y, 0, 0) * _Positions[v.instancedId].scale
                 ); // 常にカメラを向く
                 
                 /*float3 positionOS = v.vertex.xyz + _Positions[v.instancedId].position;
