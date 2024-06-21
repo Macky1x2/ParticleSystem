@@ -118,6 +118,9 @@ public class DirectMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //カメラの前に移動
+        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+
         int spawnNum = emitter.GetSpawnNum();
         SetSpawnInfo(spawnNum);
         computeShader.SetInt("spawnNum", spawnNum);
@@ -132,9 +135,6 @@ public class DirectMove : MonoBehaviour
 
         //Particle[] resultParticles = new Particle[particleMax];
         //particleComputeBuffer.GetData(resultParticles);
-
-        //カメラの前に移動
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
 
         //graphicsBuffer.SetData(resultParticles);
         material.SetBuffer("_Positions", particleComputeBuffer);
@@ -159,8 +159,8 @@ public class DirectMove : MonoBehaviour
             Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
             float scaleThis = scale + randomScale * Random.value;
             Vector3 deltaPos = transform.position - prePosition;
-            //spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
-            spawnInfos[i].position = Vector3.zero;
+            spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
+            //spawnInfos[i].position = Vector3.zero;
             spawnInfos[i].scale = scaleThis;
             spawnInfos[i].lifetime = lifetime;
             spawnInfos[i].velocity = velocity;
