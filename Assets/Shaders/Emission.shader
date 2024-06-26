@@ -4,6 +4,7 @@
     {
         _MainTex("Texture", 2D) = "white" {}
         [HDR] _EmissionColor("Emission Color", Color) = (0,0,0)
+        _Center("Center", Vector) = (0,0,0,0)
     }
         SubShader
     {
@@ -54,6 +55,8 @@
 
             float4 _EmissionColor;             //’Ç‰Á
 
+            float3 _Center;
+
             v2f vert(appdata v)
             {
                 v2f o;
@@ -61,7 +64,7 @@
                     UNITY_MATRIX_P,
                     mul(
                         UNITY_MATRIX_V,
-                        float4(_Positions[v.instancedId].position, 1)
+                        float4(_Center + _Positions[v.instancedId].position, 1)
                     ) + float4(-v.vertex.x, v.vertex.y, 0, 0) * _Positions[v.instancedId].scale
                 ); // 常にカメラを向く
                 

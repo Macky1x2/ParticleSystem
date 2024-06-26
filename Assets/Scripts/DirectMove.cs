@@ -25,6 +25,8 @@ public class DirectMove : MonoBehaviour
 
     [SerializeField] private float spawnSpeed;
 
+    [SerializeField] private GameObject target;
+
     private Emitter emitter;
 
     private Particle[] spawnInfos;
@@ -137,6 +139,7 @@ public class DirectMove : MonoBehaviour
         //particleComputeBuffer.GetData(resultParticles);
 
         //graphicsBuffer.SetData(resultParticles);
+        material.SetVector("_Center", target.transform.position);
         material.SetBuffer("_Positions", particleComputeBuffer);
         Graphics.DrawMeshInstancedProcedural(mesh, 0, material, new Bounds(transform.position,
     new Vector3(2f, 2f, 2f)), particleComputeBuffer.count);

@@ -165,6 +165,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &405458116
 Transform:
   m_ObjectHideFlags: 0
@@ -222,6 +223,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &546190938
 Transform:
   m_ObjectHideFlags: 0
@@ -279,6 +281,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &569728866
 Transform:
   m_ObjectHideFlags: 0
@@ -336,6 +339,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &649386651
 Transform:
   m_ObjectHideFlags: 0
@@ -511,6 +515,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &710694300
 Transform:
   m_ObjectHideFlags: 0
@@ -568,6 +573,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &722170376
 Transform:
   m_ObjectHideFlags: 0
@@ -689,6 +695,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &815617499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815617500}
+  m_Layer: 0
+  m_Name: Car
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815617500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815617499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.024152, y: -3.0356328, z: 107.19662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879806083
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +768,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &879806085
 Transform:
   m_ObjectHideFlags: 0
@@ -878,12 +916,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +976,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &1052240933
 Transform:
   m_ObjectHideFlags: 0
@@ -5825,6 +5864,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1048576
+  target: {fileID: 815617499}
 --- !u!4 &1552456052
 Transform:
   m_ObjectHideFlags: 0
@@ -5882,6 +5922,7 @@ MonoBehaviour:
   emissionIntensity: 5
   is2D: 1
   spawnSpeed: 1024
+  target: {fileID: 0}
 --- !u!4 &1854710361
 Transform:
   m_ObjectHideFlags: 0
@@ -6071,3 +6112,4 @@ SceneRoots:
   - {fileID: 879806085}
   - {fileID: 752665322}
   - {fileID: 2057207754}
+  - {fileID: 815617500}
