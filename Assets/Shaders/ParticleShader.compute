@@ -18,6 +18,8 @@ struct Particle {
 RWStructuredBuffer<Particle> particleDataBuffer;
 RWStructuredBuffer<Particle> spawnParticleDataBuffer;
 RWStructuredBuffer<int> spawnCountDataBuffer;
+AppendStructuredBuffer<uint> _DeadList;
+ConsumeStructuredBuffer<uint> _ParticlePool;
 
 float deltaTime;
 
@@ -34,6 +36,10 @@ void ParticleMain(uint3 id : SV_DispatchThreadID)
         p.lifetime -= deltaTime;
 
         particleDataBuffer[index] = p;
+
+        if (p.lifetime <= 0) {
+            _DeadList.Append(index);
+        }
     }
 }
 
@@ -55,7 +61,7 @@ void ParticleMain(uint3 id : SV_DispatchThreadID)
 [numthreads(NUM_THREAD_X, 1, 1)]
 void SpawnParticle(uint3 id : SV_DispatchThreadID)
 {
-    int index = id.x;
+    /*int index = id.x;
     Particle p = particleDataBuffer[index];
 
     if (p.lifetime <= 0) {
@@ -70,5 +76,20 @@ void SpawnParticle(uint3 id : SV_DispatchThreadID)
 
             particleDataBuffer[index] = p;
         }
+    }*/
+
+    int index = _ParticlePool.Consume();
+
+    if (index != 0) {
+        Particle p;
+
+        p.velocity = spawnParticleDataBuffer[0].velocity;
+        p.position = spawnParticleDataBuffer[0].position;
+        p.scale = spawnParticleDataBuffer[0].scale;
+        p.lifetime = spawnParticleDataBuffer[0].lifetime;
+        p.color = spawnParticleDataBuffer[0].color;
+
+        particleDataBuffer[index] = p;
     }
+    
 }

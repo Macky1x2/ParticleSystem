@@ -38,6 +38,7 @@ public class DirectMove : MonoBehaviour
     private ComputeBuffer particleComputeBuffer;
     private ComputeBuffer spawnParticlerComputeBuffer;
     private ComputeBuffer spawnCountComputeBuffer;
+    private ComputeBuffer particlePoolBuffer;
 
     private int[] spawnCountBuffer = new int[1];
 
@@ -70,11 +71,17 @@ public class DirectMove : MonoBehaviour
         particleComputeBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(Particle)));
         spawnParticlerComputeBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(Particle)));
         spawnCountComputeBuffer = new ComputeBuffer(1, Marshal.SizeOf(typeof(int)));
+        // AppendStructuredBuffer と ConsumeStreucturedBuffer共用のComputeBufferの初期化
+        particlePoolBuffer = new ComputeBuffer(particleMax, Marshal.SizeOf(typeof(uint)), ComputeBufferType.Append);
+        particlePoolBuffer.SetCounterValue(0);
 
         computeShader.SetBuffer(kernelIndexParticleMain, "particleDataBuffer", particleComputeBuffer);
         computeShader.SetBuffer(kernelIndexSpawnParticle, "particleDataBuffer", particleComputeBuffer);
         computeShader.SetBuffer(kernelIndexSpawnParticle, "spawnParticleDataBuffer", spawnParticlerComputeBuffer);
         computeShader.SetBuffer(kernelIndexSpawnParticle, "spawnCountDataBuffer", spawnCountComputeBuffer);
+        computeShader.SetBuffer(kernelIndexParticleMain, "_DeadList", particlePoolBuffer);
+        computeShader.SetBuffer(kernelIndexSpawnParticle, "_ParticlePool", particlePoolBuffer);
+
 
         // (3) •K—v‚È‚ç ComputeShader ‚Éƒpƒ‰ƒ[ƒ^‚ð“n‚µ‚Ü‚·B
         spawnInfos = new Particle[particleMax];
