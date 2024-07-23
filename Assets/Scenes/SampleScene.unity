@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 649386649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d135bd0b454c0041a9e54af69cc89cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
@@ -334,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &720812389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 720812388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d135bd0b454c0041a9e54af69cc89cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 846353083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d135bd0b454c0041a9e54af69cc89cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
@@ -5585,7 +5585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1552456050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d135bd0b454c0041a9e54af69cc89cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
@@ -5647,7 +5647,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879866564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d135bd0b454c0041a9e54af69cc89cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
