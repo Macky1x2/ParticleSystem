@@ -123,180 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &405458114
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 405458116}
-  - component: {fileID: 405458115}
-  m_Layer: 0
-  m_Name: DirectMove (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &405458115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405458114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
-  scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
-  is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &405458116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405458114}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.5, y: 0, z: -58.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &546190936
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 546190938}
-  - component: {fileID: 546190937}
-  m_Layer: 0
-  m_Name: DirectMove (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &546190937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546190936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
-  scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
-  is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &546190938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546190936}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.73, y: 0, z: 12.64}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &569728864
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 569728866}
-  - component: {fileID: 569728865}
-  m_Layer: 0
-  m_Name: DirectMove (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &569728865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569728864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
-  scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
-  is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &569728866
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569728864}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.94, y: 0, z: 10.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649386649
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649386651}
   - component: {fileID: 649386650}
+  - component: {fileID: 649386652}
   m_Layer: 0
   m_Name: DirectMove (1)
   m_TagString: Untagged
@@ -329,17 +156,21 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
+  particleMax: 8388608
+  startVelocity: {x: 0, y: 0, z: 0}
+  randomStartSpeed: 1
+  lifetime: 0
+  randomLifetime: 8
   scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
+  randomScale: 6
+  emissionColorDeltaSpeed: 1
   emissionIntensity: 5
+  sizeUpSpeed: -1
+  gravityPower: 0.98
+  colorAlpha: 1
   is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
+  spawnSpeed: 1048576
+  target: {fileID: 815617499}
 --- !u!4 &649386651
 Transform:
   m_ObjectHideFlags: 0
@@ -349,12 +180,26 @@ Transform:
   m_GameObject: {fileID: 649386649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -16.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649386652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649386649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45fb64e1c8b53754395c2e0011118805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomRange: {x: 300, y: 50, z: 100}
+  randomRadius: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +318,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &710694298
+--- !u!1 &720812388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,22 +326,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 710694300}
-  - component: {fileID: 710694299}
+  - component: {fileID: 720812390}
+  - component: {fileID: 720812389}
   m_Layer: 0
-  m_Name: DirectMove (5)
+  m_Name: DirectMove (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &710694299
+  m_IsActive: 1
+--- !u!114 &720812389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710694298}
+  m_GameObject: {fileID: 720812388}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
@@ -506,84 +351,30 @@ MonoBehaviour:
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
   particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
+  startVelocity: {x: 0, y: 0, z: 1.5}
+  randomStartSpeed: 1.5
+  lifetime: 0
+  randomLifetime: 0.5
   scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
+  randomScale: 1
+  emissionColorDeltaSpeed: 0
+  emissionIntensity: 0
+  sizeUpSpeed: -0.3
+  gravityPower: 0.098
+  colorAlpha: 1
   is2D: 1
   spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &710694300
+  target: {fileID: 815617499}
+--- !u!4 &720812390
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710694298}
+  m_GameObject: {fileID: 720812388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.13, y: 0, z: 6.74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &722170374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 722170376}
-  - component: {fileID: 722170375}
-  m_Layer: 0
-  m_Name: DirectMove (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &722170375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722170374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
-  scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
-  is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &722170376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722170374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.2, y: 0, z: -20.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -720,13 +511,13 @@ Transform:
   m_GameObject: {fileID: 815617499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.024152, y: -3.0356328, z: 107.19662}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &879806083
+--- !u!1 &846353083
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -734,22 +525,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 879806085}
-  - component: {fileID: 879806084}
+  - component: {fileID: 846353085}
+  - component: {fileID: 846353084}
   m_Layer: 0
-  m_Name: DirectMove (9)
+  m_Name: DirectMove (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &879806084
+--- !u!114 &846353084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879806083}
+  m_GameObject: {fileID: 846353083}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
@@ -757,28 +548,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
+  material: {fileID: 2100000, guid: 2ee28433c6760414496918eecbcb49fe, type: 2}
   particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
+  startVelocity: {x: 0, y: 0, z: 0.5}
+  randomStartSpeed: 0.1
+  lifetime: 0
+  randomLifetime: 5
   scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
+  randomScale: 5
+  emissionColorDeltaSpeed: 0
+  emissionIntensity: 0
+  sizeUpSpeed: 3
+  gravityPower: -0.098
+  colorAlpha: 1
   is2D: 1
   spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &879806085
+  target: {fileID: 815617499}
+--- !u!4 &846353085
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879806083}
+  m_GameObject: {fileID: 846353083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2, y: 0, z: -15.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -872,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: 100}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -901,7 +696,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -934,64 +729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e95e18579f10f4ab751fedcde75614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1052240931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1052240933}
-  - component: {fileID: 1052240932}
-  m_Layer: 0
-  m_Name: DirectMove (8)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1052240932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052240931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
-  scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
-  is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &1052240933
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052240931}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.3, y: 0, z: -6.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387889848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +768,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d59673695ed9474ca529124fa1b17c8, type: 2}
+  - {fileID: 2100000, guid: ddc65230627ab3c41b00ada9c37d7c23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1052,7 +789,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -1075,7 +812,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -1655,7 +1392,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 100000
+    maxNumParticles: 30000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5838,7 +5575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1552456051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5854,16 +5591,20 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8388608
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 8
-  scale: 0
-  randomScale: 1
-  emissionColorDeltaSpeed: 0.1
-  emissionIntensity: 5
+  particleMax: 1048576
+  startVelocity: {x: 0, y: 0, z: 0}
+  randomStartSpeed: 0.4
+  lifetime: 10000
+  randomLifetime: 0
+  scale: 0.5
+  randomScale: 0.5
+  emissionColorDeltaSpeed: 0
+  emissionIntensity: 0
+  sizeUpSpeed: 0
+  gravityPower: 0.98
+  colorAlpha: 0.2
   is2D: 1
-  spawnSpeed: 1048576
+  spawnSpeed: 1024
   target: {fileID: 815617499}
 --- !u!4 &1552456052
 Transform:
@@ -5880,7 +5621,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1854710359
+--- !u!1 &1879866564
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5888,22 +5629,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1854710361}
-  - component: {fileID: 1854710360}
+  - component: {fileID: 1879866567}
+  - component: {fileID: 1879866566}
   m_Layer: 0
-  m_Name: DirectMove (2)
+  m_Name: DirectMove (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1854710360
+--- !u!114 &1879866566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854710359}
+  m_GameObject: {fileID: 1879866564}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83d9faa0f897e044a6bd953717b6c52, type: 3}
@@ -5912,27 +5653,31 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 677c9add406c8ec49a23c70f2f634f89, type: 3}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 6cf0e7431b844c6468b8ac57bee1ff08, type: 2}
-  particleMax: 8192
-  startVelocity: {x: -3, y: -3, z: -3}
-  randomStartSpeed: 6
-  lifetime: 5
+  particleMax: 8388608
+  startVelocity: {x: 0, y: 0, z: 0}
+  randomStartSpeed: 12
+  lifetime: 0
+  randomLifetime: 2
   scale: 0
-  randomScale: 10
-  emissionColorDeltaSpeed: 0.1
+  randomScale: 1
+  emissionColorDeltaSpeed: 0.03
   emissionIntensity: 5
+  sizeUpSpeed: 0
+  gravityPower: 0.98
+  colorAlpha: 1
   is2D: 1
-  spawnSpeed: 1024
-  target: {fileID: 0}
---- !u!4 &1854710361
+  spawnSpeed: 1048576
+  target: {fileID: 815617499}
+--- !u!4 &1879866567
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854710359}
+  m_GameObject: {fileID: 1879866564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.28, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6102,14 +5847,9 @@ SceneRoots:
   - {fileID: 2053960756}
   - {fileID: 1552456052}
   - {fileID: 649386651}
-  - {fileID: 1854710361}
-  - {fileID: 546190938}
-  - {fileID: 722170376}
-  - {fileID: 710694300}
-  - {fileID: 405458116}
-  - {fileID: 569728866}
-  - {fileID: 1052240933}
-  - {fileID: 879806085}
+  - {fileID: 1879866567}
+  - {fileID: 720812390}
+  - {fileID: 846353085}
   - {fileID: 752665322}
   - {fileID: 2057207754}
   - {fileID: 815617500}

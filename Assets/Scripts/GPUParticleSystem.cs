@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class DirectMove : MonoBehaviour
+public class GPUParticleSystem : MonoBehaviour
 {
     private static readonly float baseMeshSize = 0.01f;
 
@@ -16,10 +16,25 @@ public class DirectMove : MonoBehaviour
     [SerializeField] private Vector3 startVelocity;
     [SerializeField] private float randomStartSpeed;
     [SerializeField] private float lifetime;
+    [SerializeField] private float randomLifetime;
     [SerializeField] private float scale;
     [SerializeField] private float randomScale;
+    public float RandomScale
+    {
+        get
+        {
+            return randomScale;
+        }
+        set
+        {
+            randomScale = value;
+        }
+    }
     [SerializeField] private float emissionColorDeltaSpeed;
     [SerializeField] private float emissionIntensity;
+    [SerializeField] private float sizeUpSpeed;
+    [SerializeField] private float gravityPower;
+    [SerializeField] private float colorAlpha;
 
     [SerializeField] private bool is2D;
 
@@ -121,7 +136,7 @@ public class DirectMove : MonoBehaviour
     void Update()
     {
         //カメラの前に移動
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+        //transform.position = Camera.main.transform.position + Camera.main.transform.forward;
 
         int spawnNum = emitter.GetSpawnNum();
         SetSpawnInfo(spawnNum);
@@ -131,6 +146,8 @@ public class DirectMove : MonoBehaviour
         computeShader.Dispatch(kernelIndexSpawnParticle, particleMax / (8 * 8 * 8), 1, 1);
 
         computeShader.SetFloat("deltaTime", Time.deltaTime);
+        computeShader.SetFloat("sizeUpSpeed", sizeUpSpeed);
+        computeShader.SetFloat("gravityPower", gravityPower);
 
         // Žw’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌƒJ[ƒlƒ‹‚ðŽw’è‚µ‚½ƒOƒ‹[ƒv”‚ÅŽÀs‚µ‚Ü‚·B
         computeShader.Dispatch(kernelIndexParticleMain, particleMax / (8 * 8 * 8), 1, 1);
@@ -141,8 +158,7 @@ public class DirectMove : MonoBehaviour
         //graphicsBuffer.SetData(resultParticles);
         material.SetVector("_Center", target.transform.position);
         material.SetBuffer("_Positions", particleComputeBuffer);
-        Graphics.DrawMeshInstancedProcedural(mesh, 0, material, new Bounds(transform.position,
-    new Vector3(2f, 2f, 2f)), particleComputeBuffer.count);
+        Graphics.DrawMeshInstancedProcedural(mesh, 0, material, new Bounds(Camera.main.transform.position,new Vector3(2f, 2f, 2f)), particleComputeBuffer.count);
     }
 
     void LateUpdate()
@@ -157,17 +173,22 @@ public class DirectMove : MonoBehaviour
         spawnNum = Mathf.Min(spawnNum, particleMax);
         //Particle[] spawnInfos = new Particle[spawnNum];
 
+        //float radius = randomStartSpeed + 20 * Random.value;      //花火
+
         for (int i = 0; i < spawnNum; i++)
         {
-            Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
+            //Vector3 velocity = startVelocity + new Vector3(Random.value, Random.value, Random.value) * randomStartSpeed;
+            Vector3 velocity = startVelocity + Random.insideUnitSphere * randomStartSpeed;
             float scaleThis = scale + randomScale * Random.value;
             Vector3 deltaPos = transform.position - prePosition;
             spawnInfos[i].position = prePosition + deltaPos * (i + 1) / spawnNum;
+            //spawnInfos[i].position = transform.position;
             //spawnInfos[i].position = Vector3.zero;
             spawnInfos[i].scale = scaleThis;
-            spawnInfos[i].lifetime = lifetime;
+            spawnInfos[i].lifetime = lifetime + randomLifetime * Random.value;
             spawnInfos[i].velocity = velocity;
             spawnInfos[i].color = MakeHDRColor(Color.HSVToRGB(emissionColorDeltaSpeed * timeAfterStart - ((int)(emissionColorDeltaSpeed * timeAfterStart)), 1, 1), emissionIntensity);
+            //spawnInfos[i].color = new Color(157 / 255.0f, 204 / 255.0f, 224/255.0f, colorAlpha);
         }
         var segment = spawnInfos[0..(spawnNum)];
         spawnParticlerComputeBuffer.SetData(segment);

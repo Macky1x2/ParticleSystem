@@ -20,6 +20,8 @@ RWStructuredBuffer<Particle> spawnParticleDataBuffer;
 RWStructuredBuffer<int> spawnCountDataBuffer;
 
 float deltaTime;
+float sizeUpSpeed;
+float gravityPower;
 
 int spawnNum;
 
@@ -30,8 +32,10 @@ void ParticleMain(uint3 id : SV_DispatchThreadID)
     Particle p = particleDataBuffer[index];
 
     if (p.lifetime > 0) {
+        p.velocity.y -= gravityPower * deltaTime;
         p.position += p.velocity * deltaTime;
         p.lifetime -= deltaTime;
+        p.scale += sizeUpSpeed * deltaTime;
 
         particleDataBuffer[index] = p;
     }
